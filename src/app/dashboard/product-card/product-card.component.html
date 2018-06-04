@@ -1,0 +1,41 @@
+<div *ngIf="product" @fade class="card">
+    <div class="fill-div">
+        <img *ngIf="product.image; else noImage" class="card-img-top" [src]="product.image|urlImage" 
+             [alt]="product.name" [title]="product.name | capitalize" [routerLink]="['/product', product.id]">
+        <ng-template #noImage>
+            <img class="card-img-top" src="../../../assets/img/image.svg" 
+                 alt="No Image" title="No Image" [routerLink]="['/product', product.id]">
+        </ng-template>
+    </div>    
+    <div class="card-body">
+        <h5 class="card-title" [routerLink]="['/product', product.id]">{{product.name | capitalize}} 
+            <span *ngIf="isNew()" class="badge badge-success">New</span>
+        </h5>
+        <span class="company">{{product.brand | capitalize}}</span>
+        <span class="price"><strong>${{product.price}}</strong></span>
+        <div class="footer-card">
+            <div *ngIf="product.cant >= 1; else noAdded" class="row no-gutters add-remove-to-cart">
+                <div class="col-3">
+                    <a (click)="removeFromCart(product.id)" class="btn btn-indigo remove">
+                        <i class="mdi mdi-minus"></i>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <span>{{product.cant}} in cart</span>
+                </div>
+                <div class="col-3">
+                    <a (click)="addToCart(product.id)" class="btn btn-indigo add float-right">
+                        <a class="mdi mdi-plus"></a>
+                    </a>
+                </div>                
+            </div>
+            <ng-template #noAdded>
+                <a (click)="addToCart(product.id)" 
+                    class="btn btn-block btn-indigo add-to-cart">
+                    <i class="mdi mdi-cart"></i>
+                    Add to cart
+                </a>
+            </ng-template>                                                      
+        </div>
+    </div>
+</div>
