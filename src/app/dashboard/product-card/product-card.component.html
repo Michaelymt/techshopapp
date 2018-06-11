@@ -16,26 +16,36 @@
         <div class="footer-card">
             <div *ngIf="product.cant >= 1; else noAdded" class="row no-gutters add-remove-to-cart">
                 <div class="col-3">
-                    <a (click)="removeFromCart(product.id)" class="btn btn-indigo remove">
-                        <i class="mdi mdi-minus"></i>
-                    </a>
+                    <button [disabled]="loadingRemove" (click)="removeFromCart(product.id)" 
+                            [ngStyle]="{'padding-left':loadingRemove ? '4px' : '12px'}"
+                            class="btn btn-indigo remove">
+                        <i *ngIf="!loadingRemove" class="mdi mdi-minus"></i>
+                        <span *ngIf="loadingRemove" class="spinner"></span>
+                    </button>
                 </div>
                 <div class="col text-center">
                     <span>{{product.cant}} in cart</span>
                 </div>
                 <div class="col-3">
-                    <a (click)="addToCart(product.id)" class="btn btn-indigo add float-right">
-                        <a class="mdi mdi-plus"></a>
-                    </a>
+                    <button [disabled]="loadingAdd" (click)="addToCart(product.id)" 
+                            [ngStyle]="{'padding-left':loadingAdd ? '4px' : '12px'}"
+                            class="btn btn-indigo add float-right">
+                        <i *ngIf="!loadingAdd" class="mdi mdi-plus"></i>
+                        <span *ngIf="loadingAdd" class="spinner"></span>
+                    </button>
                 </div>                
             </div>
             <ng-template #noAdded>
-                <a (click)="addToCart(product.id)" 
+                <button [disabled]="loadingAdd" 
+                    (click)="addToCart(product.id)"
                     class="btn btn-block btn-indigo add-to-cart">
-                    <i class="mdi mdi-cart"></i>
-                    Add to cart
-                </a>
-            </ng-template>                                                      
+                    <span *ngIf="loadingAdd" class="spinner"></span>
+                    <span *ngIf="!loadingAdd">
+                        <i class="mdi mdi-cart"></i>
+                        Add to cart
+                    </span>                    
+                </button>
+            </ng-template>                                                                  
         </div>
     </div>
 </div>

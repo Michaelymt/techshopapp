@@ -17,6 +17,8 @@ import { fade } from '../../shared/animations/animations';
 export class ProductCardComponent implements OnInit {
 
   @Input() product: Product;
+  loadingAdd: boolean = false;
+  loadingRemove: boolean = false;
 
   constructor(private datePipe: DatePipe,
               private orderService: OrderService,
@@ -38,11 +40,13 @@ export class ProductCardComponent implements OnInit {
 
   addToCart(productId: number) {
     if (this.authService.getUser()) {
+      this.loadingAdd = true;
       this.orderService.addToCart(productId)
       .subscribe(
         data => {
           this.orderService.change(data['cant']);
           this.product.cant = data['quantity'];
+          this.loadingAdd = false;
         },
         error => {
           console.log('Error Error to add to cart');
@@ -55,11 +59,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   removeFromCart(productId: number) {
+    this.loadingRemove = true;
     this.orderService.removeProduct(productId)
       .subscribe(
         data => {
           this.orderService.change(data['cant']);
           this.product.cant = data['quantity'];
+          this.loadingRemove = false;
         },
         error => {
           console.log('Error Error to remove product from cart');
