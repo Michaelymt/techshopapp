@@ -313,6 +313,11 @@ table img {
     height: 80px;
     object-fit: cover;
 }
+.add-to-cart, .add-remove-to-cart .remove, .add-remove-to-cart .add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Media Queries */
 @media (min-width: 768px) {
@@ -415,6 +420,30 @@ table img {
 #order-list a {
     color: rgb(92, 109, 206);
 }
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(720deg);
+    }
+  } 
+
+.spinner {
+    border: 2px solid transparent;
+    border-top: 2px solid #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
 
 
 
