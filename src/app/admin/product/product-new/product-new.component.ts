@@ -17,7 +17,7 @@ export class ProductNewComponent implements OnInit {
     productForm: FormGroup;
     name: FormControl;
     price: FormControl;
-    image: FormControl;
+    image: FormControl;    
     brand: FormControl;
     category_id: FormControl;
     description: FormControl;

@@ -5,6 +5,8 @@ export class Product {
     name: string;
     price: number;
     image: string;
+    image_url: string;
+    public_id: string;
     brand: string;
     category: Category;
     description: string;
