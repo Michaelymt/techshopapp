@@ -31,7 +31,6 @@ export class ProductComponent implements OnInit {
                     this.products = data['data'];
                     this.meta = data['meta'];
                     this.links = data['links'];
-                    console.log(data);
                 },
                 error => {
                     console.log("Error "+error);
