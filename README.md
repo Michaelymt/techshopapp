@@ -1,2 +1,3 @@
-# TechShop - An Ecommerce application with Angular 4 and laravel 5.5
+# TechShop - An Ecommerce application made with Angular 4
+The app can be found here: (https://techshopapp.herokuapp.com/)
 
